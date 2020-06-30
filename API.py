@@ -1,8 +1,25 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_restful import Resource, Api
 
 app = Flask(__name__)
 api = Api(app)
+
+movies = [
+    {
+        "name": "The Shawshank Redemption",
+        "casts": ["Tim Robbins", "Morgan Freeman", "Bob Gunton", "William Sadler"],
+        "genres": ["Drama"]
+    },
+    {
+       "name": "The Godfather ",
+       "casts": ["Marlon Brando", "Al Pacino", "James Caan", "Diane Keaton"],
+       "genres": ["Crime", "Drama"]
+    }
+]
+
+@app.route('/movies')
+def hello():
+    return jsonify(movies)
 
 class Incidents(Resource):
     def get(self):
